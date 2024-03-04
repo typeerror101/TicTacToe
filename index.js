@@ -48,16 +48,19 @@ function Cell() {
     };
 }
 
-function GameController() {
+function GameController(
+    playerOneName = "Player One",
+    playerTwoName = "Player Two"
+) {
     const board = Gameboard();
 
     const players = [
         {
-            name: "Player 1",
+            name: playerOneName,
             token: 'O'
         },
         {
-            name: "Player 2",
+            name: playerTwoName,
             token: 'X'
         }
     ];
@@ -72,7 +75,7 @@ function GameController() {
 
     const printNewRound = () => {
         board.printBoard();
-        console.log(`${getActivePlayer.name}'s Turn. `);
+        console.log(`${getActivePlayer().name}'s Turn. `);
         playRound();
     }
 
@@ -80,8 +83,8 @@ function GameController() {
             const Row = prompt('Enter which row to pin token');
             const Col = prompt('Enter which column to pin token');
 
-            console.log(`Dropping pin in column ${Col} and row ${Row} by ${getActivePlayer.name}`);
-            board.pinToken(Row, Col, getActivePlayer.token)
+            console.log(`Dropping pin in column ${Col} and row ${Row} by ${getActivePlayer().name}`);
+            board.pinToken(Row, Col, getActivePlayer().token)
 
             switchPlayerTurn();
             printNewRound();
