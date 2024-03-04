@@ -16,13 +16,14 @@ function Gameboard() {
             board[row][column].addToken(player)
         }else{
             console.log('Token already exists');
+            switchPlayerTurn();
         }
     }
     
     const getBoard = () => board; //for UI
 
     const printBoard = () => {
-        const printFinalBoard = board.map((row) => row.map((cell) => cell.getValue));
+        const printFinalBoard = board.map((row) => row.map((cell) => cell.getValue()));
         console.log(printFinalBoard);
     }
 
@@ -93,6 +94,7 @@ function GameController(
     printNewRound();       
     
     return{
+        switchPlayerTurn,
         playRound,
         getActivePlayer
     };
